@@ -26,8 +26,6 @@ class App extends Component {
           ))}
         </ul>
         <RandomButton handleClick={() => this.handleClick()} />
-        {/* <button onClick={() => this.handleClick()}>get lucky winner!</button> */}
-        {/* <button onClick={this.handleClick2}>get lucky winner!</button> */}
         <div>
           <input id="new-name" type="text" />
           <button onClick={() => this.addName()}>add name</button>
@@ -49,11 +47,6 @@ class App extends Component {
       luckyWinnerIndex: randomIndex
     });
   }
-
-  // experimental syntax
-  // handleClick2 = () => {
-  //   console.log('click detected on', this);
-  // };
 }
 
 export default App;
