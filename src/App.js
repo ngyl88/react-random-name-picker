@@ -9,9 +9,7 @@ class App extends Component {
     super();
     this.state = {
       names: ["gordon", "sahil", "david", "sally", "jane", "alice"],
-      luckyWinnerIndex: null,
-      inputName: "",
-      isLoading: false
+      luckyWinnerIndex: null
     };
   }
 
@@ -19,49 +17,36 @@ class App extends Component {
     return (
       <div>
         <h1 id="app-title">hello random name picker</h1>
-        {/* {this.state.isLoading ? console.log('loading...') : ''} */}
-        <div><ul>
-          {this.state.names.map((name, index) => (
-            <Name
-              key={index}
-              name={name}
-              isLucky={this.state.luckyWinnerIndex === index}
-            />
-          ))}
-        </ul>
-        <RandomButton handleClick={() => this.handleClick()} /></div>
+        <div>
+          <ul>
+            {this.state.names.map((name, index) => (
+              <Name
+                key={index}
+                name={name}
+                isLucky={this.state.luckyWinnerIndex === index}
+              />
+            ))}
+          </ul>
+          <RandomButton handleClick={() => this.handleClick()} />
+        </div>
         <InputForm
-          inputName={this.state.inputName}
-          handleNewName={event => this.handleNewNameChange(event)}
-          handleSubmit={event => this.handleSubmit(event)}
+          handleSubmit={(a, event) => this.addNewName(a, event)}
         />
       </div>
     );
   }
 
   handleClick() {
-    this.setState({
-      isLoading: true
-    });
     const randomIndex = math.randomInt(this.state.names.length);
     this.setState({
       luckyWinnerIndex: randomIndex
-      // isLoading: false
     });
   }
 
-  handleNewNameChange(event) {
-    this.setState({
-      inputName: event.target.value
-    });
-  }
-
-  handleSubmit(event) {
+  addNewName(newName, event) {
     event.preventDefault();
-    const newName = this.state.inputName;
     this.setState({
-      names: [...this.state.names, newName],
-      inputName: ""
+      names: [...this.state.names, newName]
     });
   }
 }
