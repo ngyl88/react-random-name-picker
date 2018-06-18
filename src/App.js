@@ -30,7 +30,7 @@ class App extends Component {
           <RandomButton handleClick={() => this.handleClick()} />
         </div>
         <InputForm
-          handleSubmit={(a, event) => this.addNewName(a, event)}
+          addName={name => this.addNewName(name)}
         />
       </div>
     );
@@ -43,8 +43,7 @@ class App extends Component {
     });
   }
 
-  addNewName(newName, event) {
-    event.preventDefault();
+  addNewName(newName) {
     this.setState({
       names: [...this.state.names, newName]
     });
